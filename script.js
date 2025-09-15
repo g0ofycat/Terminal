@@ -11,7 +11,7 @@ let historyIndex = null;
 const paragraph = `
 [START PARAGRAPH]
 
-Empathy /ˈempəTHē/ is generally described as the ability to perceive another person's perspective, to understand, feel, and possibly share and respond to their experience.
+Surround yourself with people who make you happy. People who make you laugh, who help you when you’re in need. People who genuinely care. They are the ones worth keeping in your life. Everyone else is just passing through. - Karl Marx
 
 [END PARAGRAPH]
 `;
@@ -191,7 +191,7 @@ function updateTerminalInfo(command = "null", statusCode = 200) {
 
 	const statusLine = `- STATUS: ${statusCode}`.padEnd(35, " ") + " ║";
 	const commandLine = `- COMMAND: ${displayCommand}`.padEnd(35, " ") + " ║";
-	const indexLine = `- INDEX: ${historyIndex}`.padEnd(35, " ") + " ║";
+	const indexLine = `- INDEX [^][v]: ${historyIndex}`.padEnd(35, " ") + " ║";
 
 	terminal_info.textContent = `
     ╔===========[TERMINAL INFO]===========╗
@@ -217,7 +217,8 @@ async function processCommand(command) {
 				"info - 'Personal details'\n\n" +
 				"projects - 'List of major projects'\n\n" +
 				"contact - 'Get my contact links'\n\n" +
-				"cls - 'Clears the terminal and history'\n\n";
+				"cls - 'Clears the terminal and history'\n\n" +
+				"(Up and down arrow keys while typing in the terminal to view history)\n\n";
 			break;
 
 		case "bio":
@@ -304,7 +305,7 @@ I specialize in areas such as Mechanics / Systems, UI/UX design, and many other 
 	}
 
 	updateTerminalInfo(command, statusCode);
-	animateLoadingBar(responseText.length / 2);
+	animateLoadingBar(responseText.length / 40);
 	typeText(responseText);
 
 	commandHistory.push({
