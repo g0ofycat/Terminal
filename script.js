@@ -6,7 +6,7 @@ const text_paragraph = document.querySelector(".text-paragraph");
 const terminal_info = document.querySelector(".terminal-info");
 
 let commandHistory = [];
-let historyIndex = 0;
+let historyIndex = null;
 
 const paragraph = `
 [START PARAGRAPH]
@@ -294,7 +294,7 @@ I specialize in areas such as Mechanics / Systems, UI/UX design, and many other 
 
 		case "cls":
 			commandHistory = [];
-			historyIndex = 0;
+			historyIndex = null;
 			commandOut.textContent = "";
 			updateTerminalInfo();
 			return;
@@ -350,40 +350,36 @@ function handleInput(e) {
 		input.value = "";
 
 		processCommand(cmd).then(() => {
-			historyIndex = commandHistory.length;
+			historyIndex = commandHistory.length - 1;
+
 			if (cmd.toLowerCase() !== "cls") {
-				updateTerminalInfo(cmd, 200);
+				const { command, statusCode } = commandHistory[historyIndex];
+				updateTerminalInfo(command, statusCode);
 			}
 		});
 	}
 }
 
 function handleKeyPress(e) {
-	if (e.key === "ArrowUp") {
-		if (historyIndex > 0) {
-			historyIndex--;
-			const {
-				command,
-				statusCode
-			} = commandHistory[historyIndex];
-			input.value = command;
-			updateTerminalInfo(command, statusCode);
-		}
-	} else if (e.key === "ArrowDown") {
-		if (historyIndex < commandHistory.length - 1) {
-			historyIndex++;
-			const {
-				command,
-				statusCode
-			} = commandHistory[historyIndex];
-			input.value = command;
-			updateTerminalInfo(command, statusCode);
-		} else {
-			historyIndex = commandHistory.length;
-			input.value = "";
-			updateTerminalInfo(cmd);
-		}
-	}
+    if (e.key === "ArrowUp") {
+        if (historyIndex !== null && historyIndex > 0) {
+            historyIndex--;
+            const { command, statusCode } = commandHistory[historyIndex];
+            input.value = command;
+            updateTerminalInfo(command, statusCode);
+        }
+    } else if (e.key === "ArrowDown") {
+        if (historyIndex !== null && historyIndex < commandHistory.length - 1) {
+            historyIndex++;
+            const { command, statusCode } = commandHistory[historyIndex];
+            input.value = command;
+            updateTerminalInfo(command, statusCode);
+        } else if (historyIndex !== null) {
+            historyIndex = commandHistory.length;
+            input.value = "";
+            updateTerminalInfo();
+        }
+    }
 }
 
 async function init() {
