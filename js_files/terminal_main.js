@@ -14,17 +14,17 @@ export const DOMElements = {
 export const AppState = {
   commandHistory: [],
   historyIndex: null,
-  
+
   addToHistory(command, response, statusCode) {
     this.commandHistory.push({ command, response, statusCode });
     this.historyIndex = this.commandHistory.length - 1;
   },
-  
+
   clearHistory() {
     this.commandHistory = [];
     this.historyIndex = null;
   },
-  
+
   navigateHistory(direction) {
     if (direction === 'up' && this.historyIndex !== null && this.historyIndex > 0) {
       this.historyIndex--;
@@ -54,7 +54,7 @@ export const TextAnimator = {
 
       const timer = setInterval(() => {
         window.scrollTo(0, document.body.scrollHeight);
-        
+
         if (nodeIndex >= nodes.length) {
           clearInterval(timer);
           DOMElements.input.disabled = false;
@@ -96,7 +96,7 @@ export const TextAnimator = {
     return new Promise(resolve => {
       let i = 0;
       DOMElements.textParagraph.innerHTML = '';
-      
+
       const timer = setInterval(() => {
         if (i >= text.length) {
           clearInterval(timer);
@@ -279,12 +279,12 @@ export const EventHandlers = {
 
       DOMElements.input.value = "";
 
-      await this.processCommand(cmd);
+      await this.processCommand(cmd, this.contentData.loadingFrames);
     }
   },
 
-  async processCommand(command) {
-    const { command: cmd, responseText, statusCode, isClearCommand } = 
+  async processCommand(command, loadingFrames) {
+    const { command: cmd, responseText, statusCode, isClearCommand } =
       CommandHandler.getCommandResponse(command);
 
     if (isClearCommand) {
@@ -295,11 +295,8 @@ export const EventHandlers = {
     }
 
     TerminalInfo.update(cmd, statusCode);
+    AnimationController.animateLoadingBar(responseText.length / 40, loadingFrames);
 
-    if (typeof loadingFrames !== 'undefined') {
-      AnimationController.animateLoadingBar(responseText.length / 40, loadingFrames);
-    }
-    
     await TextAnimator.typeText(responseText);
     AppState.addToHistory(cmd, responseText, statusCode);
     TerminalInfo.update(cmd, statusCode);
@@ -332,13 +329,21 @@ export class Terminal {
   async init() {
     AnimationController.animateCat(this.contentData.iconFrames);
     AnimationController.animateLoadingBar(75, this.contentData.loadingFrames);
-    
+
     await TextAnimator.typeTextIntoParagraph(this.contentData.paragraph, 1);
-    
+
     DOMElements.input.focus();
-    DOMElements.input.addEventListener("keydown", EventHandlers.handleInput.bind(EventHandlers));
-    DOMElements.input.addEventListener("keydown", EventHandlers.handleKeyPress.bind(EventHandlers));
-    
+
+    const boundHandleInput = (e) => EventHandlers.handleInput.call({
+      ...EventHandlers,
+      contentData: this.contentData
+    }, e);
+
+    const boundHandleKeyPress = (e) => EventHandlers.handleKeyPress.call(EventHandlers, e);
+
+    DOMElements.input.addEventListener("keydown", boundHandleInput);
+    DOMElements.input.addEventListener("keydown", boundHandleKeyPress);
+
     TerminalInfo.update();
   }
 }
