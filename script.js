@@ -122,6 +122,8 @@ function typeText(text, speed = 5) {
 	return new Promise(resolve => {
 		input.disabled = true;
 
+		document.body.style.overflowY = "hidden";
+
 		const tempDiv = document.createElement('div');
 		tempDiv.innerHTML = text.replace(/\n/g, '<br>');
 
@@ -135,6 +137,7 @@ function typeText(text, speed = 5) {
 				clearInterval(timer);
 				input.disabled = false;
 				input.focus();
+				document.body.style.overflowY = "";
 				resolve();
 				return;
 			}
@@ -226,7 +229,7 @@ async function processCommand(command) {
 			responseText = `
 BIO:
 
-Hello, I'm g0ofycat! I'm a Fullstack Developer with over 5 years of programming experience.
+Hello, I'm g0ofycat! I'm a Fullstack Developer and Web Designer with over 5 years of experience.
 
 My main language is Python, and I also work with Luau, CSS, JavaScript / TypeScript (plus frameworks), and C.
 
@@ -386,7 +389,7 @@ function handleKeyPress(e) {
 
 async function init() {
 	animateCat();
-	animateLoadingBar(50);
+	animateLoadingBar(75);
 	await typeTextIntoParagraph(paragraph, 1);
 	input.focus();
 	input.addEventListener("keydown", handleInput);
