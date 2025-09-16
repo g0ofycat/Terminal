@@ -219,7 +219,7 @@ async function processCommand(command) {
 				"projects - 'List of major projects'\n\n" +
 				"contact - 'Get my contact links'\n\n" +
 				"cls - 'Clears the terminal and history'\n\n" +
-				"(Up and down arrow keys while typing in the terminal to view history)\n\n";
+				"(Use the ↑ and ↓ keys in the terminal to navigate command history)\n\n";
 			break;
 
 		case "bio":
