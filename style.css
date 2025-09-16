@@ -15,7 +15,6 @@ html {
 body {
   height: 100%;
   padding: 1.25rem;
-  min-height: 100vh;
   overflow-x: hidden;
   position: relative;
   box-sizing: border-box;
@@ -38,25 +37,20 @@ body::before {
   z-index: 0;
 }
 
-body::after {
-  content: "";
-  display: block;
-  height: 4rem;
-}
-
 .visual-container {
-  position: absolute;
+  bottom: 1rem;
+  position: fixed;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .inner-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1920px;
-  height: 1020px;
-  transform-origin: top left;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 100vw;
+  overflow: hidden;
 }
 
 .terminal {
@@ -128,14 +122,28 @@ input::placeholder {
     0 0 24px #ffffff10;
 }
 
+.output-wrapper {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  padding-bottom: 4rem;
+}
+
 .command-output {
+  position: relative;
+  top: 3rem;
+  left: 1rem;
   width: 50%;
   white-space: pre-wrap;
   word-wrap: break-word;
   font-size: clamp(0.8rem, 1vw, 1rem);
   color: #fff;
   font-weight: 600;
-  margin: 2.5rem 0 1.25rem;
+  margin: 0;
 }
 
 .command-output a {
@@ -150,7 +158,7 @@ input::placeholder {
 .breaker {
   position: sticky;
   margin-bottom: 1.25rem;
-  left: 80vw;
+  right: 20vw;
   color: #333333;
   font-size: clamp(0.8rem, 1vw, 1rem);
 }
@@ -176,7 +184,7 @@ input::placeholder {
 .ascii-art {
   position: absolute;
   top: 150px;
-  left: 970px;
+  right: 50px;
   font-size: 13px;
   color: #fff;
   line-height: 1;
@@ -186,7 +194,7 @@ input::placeholder {
 .ascii-icon {
   position: absolute;
   top: 50px;
-  right: 1025px;
+  right: 350px;
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -199,7 +207,7 @@ input::placeholder {
 .loading-bar {
   position: absolute;
   top: 75px;
-  right: 700px;
+  right: 50px;
   color: #fff;
   font-size: 14px;
   white-space: pre;
@@ -210,7 +218,7 @@ input::placeholder {
   position: absolute;
   text-align: center;
   top: 160px;
-  right: 975px;
+  right: 300px;
   color: #ffffff;
   font-size: 12px;
   font-weight: 200;
@@ -221,7 +229,7 @@ input::placeholder {
 .terminal-info {
   position: absolute;
   top: 375px;
-  right: 950px;
+  right: 275px;
   padding: 25px;
   color: #ffffff;
   font-size: 12px;

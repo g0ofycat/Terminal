@@ -130,6 +130,7 @@ function typeText(text, speed = 5) {
 		let charIndex = 0;
 
 		const timer = setInterval(() => {
+			window.scrollTo(0, document.body.scrollHeight);
 			if (nodeIndex >= nodes.length) {
 				clearInterval(timer);
 				input.disabled = false;
