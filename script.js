@@ -362,25 +362,26 @@ function handleInput(e) {
 }
 
 function handleKeyPress(e) {
-    if (e.key === "ArrowUp") {
-        if (historyIndex !== null && historyIndex > 0) {
-            historyIndex--;
-            const { command, statusCode } = commandHistory[historyIndex];
-            input.value = command;
-            updateTerminalInfo(command, statusCode);
-        }
-    } else if (e.key === "ArrowDown") {
-        if (historyIndex !== null && historyIndex < commandHistory.length - 1) {
-            historyIndex++;
-            const { command, statusCode } = commandHistory[historyIndex];
-            input.value = command;
-            updateTerminalInfo(command, statusCode);
-        } else if (historyIndex !== null) {
-            historyIndex = commandHistory.length;
-            input.value = "";
-            updateTerminalInfo();
-        }
-    }
+	if (e.key === "ArrowUp") {
+		if (historyIndex !== null && historyIndex > 0) {
+			historyIndex--;
+			const { command, statusCode } = commandHistory[historyIndex];
+			input.value = command;
+			updateTerminalInfo(command, statusCode);
+		}
+	} else if (e.key === "ArrowDown") {
+		if (historyIndex !== null && historyIndex < commandHistory.length - 1) {
+			historyIndex++;
+			const { command, statusCode } = commandHistory[historyIndex];
+			input.value = command;
+			updateTerminalInfo(command, statusCode);
+		} else if (historyIndex !== null && historyIndex < commandHistory.length - 1) {
+			historyIndex++;
+			const { command, statusCode } = commandHistory[historyIndex];
+			input.value = command;
+			updateTerminalInfo(command, statusCode);
+		}
+	}
 }
 
 async function init() {
