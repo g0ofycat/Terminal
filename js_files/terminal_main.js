@@ -40,7 +40,7 @@ export const AppState = {
 // ===== Text Animation =====
 
 export const TextAnimator = {
-  typeText(text, speed = 5) {
+  typeText(text, speed = 10) {
     return new Promise(resolve => {
       DOMElements.input.disabled = true;
       document.body.style.overflowY = "hidden";
@@ -295,7 +295,9 @@ export const EventHandlers = {
     }
 
     TerminalInfo.update(cmd, statusCode);
-    AnimationController.animateLoadingBar(responseText.length / 40, loadingFrames);
+
+    const textWithoutHtml = responseText.replace(/<[^>]*>/g, '');
+    AnimationController.animateLoadingBar(textWithoutHtml.length / 8, loadingFrames);
 
     await TextAnimator.typeText(responseText);
     AppState.addToHistory(cmd, responseText, statusCode);
