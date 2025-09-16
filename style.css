@@ -29,7 +29,7 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background-image: url("/images/random_static.gif");
+  background-image: url("./images/random_static.gif");
   background-size: 200px 200px;
   opacity: 0.1;
   mix-blend-mode: screen;
