@@ -118,7 +118,6 @@ export const TextAnimator = {
     const timer = setInterval(() => {
       if (i >= text.length) {
         clearInterval(timer);
-        resolve();
       } else {
         const chunk = text.slice(i, i + 20)
           .replace(/\n/g, '<br>');
