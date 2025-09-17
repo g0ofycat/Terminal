@@ -350,7 +350,7 @@ export class Terminal {
 
   async init() {
     AnimationController.animateCat(this.contentData.iconFrames);
-    AnimationController.animateLoadingBar(this.contentData.paragraph.length / 2, this.contentData.loadingFrames);
+    AnimationController.animateLoadingBar(this.contentData.paragraph.length / 4, this.contentData.loadingFrames);
 
     TextAnimator.typeTextIntoArt(this.contentData.artText, 1);
 
