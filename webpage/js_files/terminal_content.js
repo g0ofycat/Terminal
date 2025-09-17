@@ -1,34 +1,114 @@
-<!DOCTYPE html>
-<html lang="en">
+export const paragraph = `
+[START PARAGRAPH]
 
-<head>
-  <meta charset="UTF-8"/>
-  <link rel="icon" type="image/png" href="./images/favicon.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="g0ofycat's Portfolio">
-  <title>g0ofycat.exe</title>
-  <link rel="stylesheet" href="style.css"/>
-  <script type="module" src="init.js" defer></script>
-</head>
+Surround yourself with people who make you happy. People who make you laugh, who help you when you’re in need. People who genuinely care. They are the ones worth keeping in your life. Everyone else is just passing through. - Karl Marx
 
-<body>
-  <div class="name">g0ofycat.exe</div>
-  <div class="icons">_ ☐ ✖</div>
+[END PARAGRAPH]
+`;
 
-  <div class="visual-container">
-    <div class="inner-content">
-      <div class="ascii-icon"></div>
-      <div class="text-paragraph"></div>
-      
-      <div class="terminal-info">
-        ╔===========[TERMINAL INFO]===========╗
-        ║ - INDEX [^][v]: null                ║
-        ║ - STATUS: 200                       ║
-        ║ - COMMAND: null                     ║
-        ╚=====================================╝
-      </div>
+export const loadingFrames = [
+	`
+    ╔=============[LOADING]=============╗
+    ║                                   ║
+    ╚===================================╝
+ `,
+	`
+    ╔=============[LOADING]=============╗
+    ║ ░░░                               ║
+    ╚===================================╝
+ `,
+	`
+    ╔=============[LOADING]=============╗
+    ║ ░░░░░░░                           ║
+    ╚===================================╝
+ `,
+	`
+    ╔=============[LOADING]=============╗
+    ║ ░░░░░░░░░░░                       ║
+    ╚===================================╝
+ `,
+	`
+    ╔=============[LOADING]=============╗
+    ║ ░░░░░░░░░░░▒▒▒▒                   ║
+    ╚===================================╝
+ `,
+	`
+    ╔=============[LOADING]=============╗
+    ║ ░░░░░░░░░░░▒▒▒▒▒▒▒▒               ║
+    ╚===================================╝
+ `,
+	`
+    ╔=============[LOADING]=============╗
+    ║ ░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒            ║
+    ╚===================================╝
+ `,
+	`
+    ╔=============[LOADING]=============╗
+    ║ ░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▓▓          ║
+    ╚===================================╝
+ `,
+	`
+    ╔=============[LOADING]=============╗
+    ║ ░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓       ║
+    ╚===================================╝
+ `,
+	`
+    ╔=============[LOADING]=============╗
+    ║ ░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓     ║
+    ╚===================================╝
+ `,
+	`
+    ╔=============[LOADING]=============╗
+    ║ ░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓   ║
+    ╚===================================╝
+ `,
+	`
+    ╔=============[LOADED!]=============╗
+    ║ ░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓ ║
+    ╚===================================╝
+ `
+];
 
-      <div class="ascii-art">
+export const iconFrames = [
+	`
+  ╱|、
+(˚ˎ 。7  
+|、˜〵      
+じしˍ,)ノ
+`,
+	`
+  ╱|、
+(˚ˎ 。7  
+|、˜〵      
+じしˍ,)ノ
+`,
+	`
+  ╱|、
+(ˋˎ - 7  
+|、˜〵      
+じしˍ,)ノ
+`,
+	`
+  ╱|、
+(˚ˎ 。7  
+|、˜〵      
+じしˍ,)ノ
+`,
+	`
+  ╱|、
+(˚ˎ 。7  
+|、˜〵      
+じしˍ,)ノ
+`,
+	`
+  ╱|、
+(˚ˎ 。7  
+|、˜〵      
+じしˍ,)︵
+`,
+];
+
+export const artText = `
 ╔===========================[ART]===========================╗
 ║:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::║
 ║:::::::::::::::::::::::::::::-+:::::*:::::::-::::::::::::::║
@@ -78,27 +158,4 @@
 ║::::::::::::::-@@@@@@@@@@@@@@@@@@@@%%@@@@@@@@@%@@+:::::::::║
 ║::::::::::::::=@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%@@@-:::::::::║
 ╚===========================================================╝
-      </div>
-
-      <div class="loading-bar">
-        ╔=============[LOADING]=============╗
-        ║                                   ║
-        ╚===================================╝
-      </div>
-    </div>
-  </div>
-  
-  <div class="output-wrapper">
-    <div class="command-output"></div>
-    <div class="breaker"><-------------END-------------></div>
-  </div>
-  <div class="version">v.1.0.0</div>
-  <div class="terminal">
-    <div class="prompt">
-      <span>C:\Users\Client ></span>
-      <input type="text" placeholder="Type 'help' for commands" autofocus />
-    </div>
-  </div>
-</body>
-
-</html>
+`;

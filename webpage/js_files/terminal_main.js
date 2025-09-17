@@ -5,6 +5,7 @@ export const DOMElements = {
   commandOut: document.querySelector(".command-output"),
   loadingBar: document.querySelector(".loading-bar"),
   asciiIcon: document.querySelector(".ascii-icon"),
+  asciiArt: document.querySelector(".ascii-art"),
   textParagraph: document.querySelector(".text-paragraph"),
   terminalInfo: document.querySelector(".terminal-info")
 };
@@ -40,7 +41,7 @@ export const AppState = {
 // ===== Text Animation =====
 
 export const TextAnimator = {
-  typeText(text, speed = 10) {
+  typeTextIntoOutput(text, speed = 10) {
     return new Promise(resolve => {
       DOMElements.input.disabled = true;
       document.body.style.overflowY = "hidden";
@@ -108,6 +109,24 @@ export const TextAnimator = {
         }
       }, speed);
     });
+  },
+
+  typeTextIntoArt(text, speed = 50) {
+    let i = 0;
+    DOMElements.asciiArt.innerHTML = '';
+
+    const timer = setInterval(() => {
+      if (i >= text.length) {
+        clearInterval(timer);
+        resolve();
+      } else {
+        const chunk = text.slice(i, i + 20)
+          .replace(/\n/g, '<br>');
+        DOMElements.asciiArt.innerHTML += chunk;
+        i += 20;
+      }
+    }, speed);
+    ;
   }
 };
 
@@ -297,9 +316,11 @@ export const EventHandlers = {
     TerminalInfo.update(cmd, statusCode);
 
     const textWithoutHtml = responseText.replace(/<[^>]*>/g, '');
+
     AnimationController.animateLoadingBar(textWithoutHtml.length / 8, loadingFrames);
 
-    await TextAnimator.typeText(responseText);
+    await TextAnimator.typeTextIntoOutput(responseText);
+    
     AppState.addToHistory(cmd, responseText, statusCode);
     TerminalInfo.update(cmd, statusCode);
   },
@@ -330,7 +351,9 @@ export class Terminal {
 
   async init() {
     AnimationController.animateCat(this.contentData.iconFrames);
-    AnimationController.animateLoadingBar(75, this.contentData.loadingFrames);
+    AnimationController.animateLoadingBar(this.contentData.paragraph.length / 2, this.contentData.loadingFrames);
+
+    TextAnimator.typeTextIntoArt(this.contentData.artText, 1);
 
     await TextAnimator.typeTextIntoParagraph(this.contentData.paragraph, 1);
 
