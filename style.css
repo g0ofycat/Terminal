@@ -20,21 +20,30 @@ body {
   box-sizing: border-box;
 }
 
-::selection {
-  background: #ffffff;
-  color: #000000;
-}
-
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   background-image: url("./images/random_static.gif");
   background-size: 200px 200px;
-  opacity: 0.1;
+  opacity: 0.05;
   mix-blend-mode: screen;
   pointer-events: none;
   z-index: 0;
+}
+
+::selection {
+  background: #ffffff;
+  color: #000000;
+}
+
+.matrix-rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 
 .visual-container {

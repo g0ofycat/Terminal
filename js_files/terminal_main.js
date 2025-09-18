@@ -341,6 +341,65 @@ export const EventHandlers = {
   }
 };
 
+// ===== Matrix Rain =====
+
+export const createMatrixRain = (canvasId = "MatrixRainID") => {
+  const canvas = document.getElementById(canvasId);
+  const ctx = canvas.getContext("2d");
+  
+  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+  
+  const characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}".split("");
+  
+  const fontSize = 10;
+  let columns = canvas.width / fontSize;
+  
+  let drops = [];
+  for (let x = 0; x < columns; x++) {
+    drops[x] = 1;
+  }
+
+  const draw = () => {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.04)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    ctx.fillStyle = "#ffffff21";
+    ctx.font = `${fontSize}px arial`;
+    
+    for (let i = 0; i < drops.length; i++) {
+      const text = characters[Math.floor(Math.random() * characters.length)];
+      
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      
+      drops[i]++;
+    }
+  };
+
+  const handleResize = () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    columns = canvas.width / fontSize;
+    
+    drops = [];
+    for (let x = 0; x < columns; x++) {
+      drops[x] = 1;
+    }
+  };
+
+  window.addEventListener('resize', handleResize);
+  const intervalId = setInterval(draw, 35);
+  
+  return () => {
+    clearInterval(intervalId);
+    window.removeEventListener('resize', handleResize);
+  };
+};
+
 // ===== Terminal =====
 
 export class Terminal {
@@ -349,6 +408,7 @@ export class Terminal {
   }
 
   async init() {
+    createMatrixRain()
     AnimationController.animateCat(this.contentData.iconFrames);
     AnimationController.animateLoadingBar(this.contentData.paragraph.length / 4, this.contentData.loadingFrames);
 
