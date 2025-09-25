@@ -231,7 +231,7 @@ I specialize in areas such as Mechanics / Systems, UI/UX design, and many other 
           '- <a href="https://youtu.be/8ygDUydN2uo" target="_blank">Custom Movement Engine: Simulates gravity, acceleration, and surfing</a>\n\n' +
           "\nPROJECTS [PROGRAMMING]:\n\n" +
           '- <a href="https://youtu.be/DtTOlYAf0Yg" target="_blank">DSA Minesweeper: C-based Minesweeper using matrices</a>\n\n' +
-          '- <a href="https://youtu.be/LcKhqLJwF3w" target="_blank">DSA 2D Grid Pathfinding: Lua BFS pathfinding</a>\n\n' +
+          '- <a href="https://youtu.be/Q5R49h9ZKE8" target="_blank">AI Movement Model: Uses a DNN and Supervised Learning to mimic real human movement</a>\n\n' +
           '- <a href="https://youtu.be/946x71SoFnQ" target="_blank">AI Transformer Architecture: Full Transformer in Python with NumPy</a>\n\n';
         break;
 
