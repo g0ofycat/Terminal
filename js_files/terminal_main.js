@@ -232,6 +232,7 @@ I specialize in areas such as Mechanics / Systems, UI/UX design, and many other 
           "\nPROJECTS [PROGRAMMING]:\n\n" +
           '- <a href="https://youtu.be/DtTOlYAf0Yg" target="_blank">DSA Minesweeper: C-based Minesweeper using matrices</a>\n\n' +
           '- <a href="https://youtu.be/Q5R49h9ZKE8" target="_blank">AI Movement Model: Uses a DNN and Supervised Learning to mimic real human movement</a>\n\n' +
+          '- <a href="https://youtu.be/5C3OeCoaIQU" target="_blank">Neuron (Deep Learning Framework): Fast and Lightweight framework used for training Deep Neural Networks made in C++</a>\n\n' +
           '- <a href="https://youtu.be/946x71SoFnQ" target="_blank">AI Transformer Architecture: Full Transformer in Python with NumPy</a>\n\n';
         break;
 
